@@ -14,6 +14,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./vueApp
+
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
@@ -25,10 +29,10 @@ jobs:
     
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
-      working-directory: ./vueApp
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        cache-dependency-path: './server/package-lock.json'
         
     - name: set up application
       run: npm ci
