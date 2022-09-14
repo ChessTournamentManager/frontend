@@ -11,9 +11,9 @@ on:
 
 jobs:
   build_and_test:
-    
+
     runs-on: ubuntu-latest
-    
+
     defaults:
       run:
         working-directory: ./vueApp
@@ -46,6 +46,8 @@ jobs:
   push:
     needs: build_and_test
     if: success() && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    
     steps:
 
     - name: Login to DockerHub
