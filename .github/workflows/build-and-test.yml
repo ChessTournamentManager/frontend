@@ -9,14 +9,14 @@ on:
   pull_request:
     branches: [ "main", "develop" ]
 
+defaults:
+  run:
+    working-directory: ./vueApp
+
 jobs:
   build:
 
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: ./vueApp
 
     strategy:
       matrix:
