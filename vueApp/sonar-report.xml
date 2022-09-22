@@ -1,5 +1,5 @@
 <testExecutions version="1">
   <file path="src/tests/SimpleExample.test.js">
-    <testCase name="Judah is 19" duration="2" />
+    <testCase name="Judah is 19" duration="1" />
   </file>
 </testExecutions>

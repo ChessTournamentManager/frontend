@@ -10,8 +10,6 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    reporters: 'vitest-sonar-reporter',
-    outputFile: 'sonar-report.xml',
   },
   plugins: [vue()],
   resolve: {
