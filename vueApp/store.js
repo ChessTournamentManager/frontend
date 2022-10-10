@@ -1,5 +1,6 @@
 import { createApp, VueElement } from 'vue'
 import { createStore } from 'vuex'
+import App from './App.vue'
 
 Vue.use(Vuex)
 
@@ -16,7 +17,7 @@ const store = createStore({
     }
 })
 
-const app = createApp({ /* your root component */ })
+const app = createApp({ App })
 
 // Install the store instance as a plugin
 app.use(store)

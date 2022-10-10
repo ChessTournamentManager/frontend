@@ -1,7 +1,7 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
 import { createAuth0 } from '@auth0/auth0-vue';
-import './assets/main.css'
+import App from './App.vue';
+import './assets/main.css';
 
 const app = createApp(App);
 
@@ -13,4 +13,4 @@ app.use(
   })
 );
 
-app.mount('#app')
+app.mount('#app');
