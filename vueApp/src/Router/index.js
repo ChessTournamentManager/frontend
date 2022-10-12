@@ -18,7 +18,8 @@ const routes = [
     {
         path: '/main',
         name: 'Main',
-        component: Main
+        component: Main,
+        meta: { requiresAuth: true }
     }, 
     {
         path: '/:pathMatch(.*)*',
@@ -30,6 +31,18 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(),
     routes: routes
+})
+
+router.beforeEach((to, from, next) => 
+{
+    let routerAuthCheck = false
+
+    if (to.matched.some(record => record.meta.requiresAuth) && !routerAuthCheck)
+    {
+        return
+    }
+
+    next()
 })
 
 export default router
