@@ -1,6 +1,10 @@
 <template>
     <NavigationBar />
-    <h2>Main Page</h2>
+    <div class="page-layout">
+        <div class="page-layout_content">
+            <slot />
+        </div>
+    </div>
 </template>
 
 <script>

@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import { authGuard } from '@auth0/auth0-vue';
 import Home from '@/views/Home.vue'
 import About from '@/views/About.vue'
 import Main from '@/views/Main.vue'
 import NotFound from '@/views/NotFound.vue'
+import Callback from '@/views/Callback.vue'
 
 const routes = [
     {
@@ -19,7 +21,12 @@ const routes = [
         path: '/main',
         name: 'Main',
         component: Main,
-        meta: { requiresAuth: true }
+        beforeEnter: authGuard
+    },
+    {
+        path: '/callback',
+        name: 'Callback',
+        component: Callback
     }, 
     {
         path: '/:pathMatch(.*)*',
@@ -29,20 +36,8 @@ const routes = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHistory(import.meta.env.BASE_URL),
     routes: routes
-})
-
-router.beforeEach((to, from, next) => 
-{
-    let routerAuthCheck = false
-
-    if (to.matched.some(record => record.meta.requiresAuth) && !routerAuthCheck)
-    {
-        return
-    }
-
-    next()
 })
 
 export default router
