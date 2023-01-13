@@ -10,9 +10,9 @@
 </template>
   
 <script>
-  import axios from "axios";
-  
-  export default {
+import axios from "axios";
+
+export default {
     name: "TournamentList",
     data() {
       return {
@@ -20,17 +20,19 @@
       };
     },
     async created() {
-      try {
-        const res = await axios.get(`http://localhost:8080/tournament`);  
-        console.log(res);
-        console.log(res.data);
-        this.tournaments = res.data;
-        console.log(this.tournaments);
-      } catch (e) {
-        console.error(e);
+      this.getTournaments();
+    },
+    methods: {
+      async getTournaments() {
+        try {
+          const res = await axios.get(`http://localhost:8080/tournament`);  
+          this.tournaments = res.data;
+        } catch (e) {
+          console.error(e);
+        }
       }
     }
-  };
+};
 </script>
   
 <style scoped>
