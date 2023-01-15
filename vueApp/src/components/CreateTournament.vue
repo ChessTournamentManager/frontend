@@ -1,34 +1,42 @@
 <template>
     <p>Create a new tournament:</p>
-    <input v-model="tName" placeholder="name"/>
-    <input v-model="tMaxRounds" placeholder="max rounds"/>
-    <input v-model="tTimePerPlayer" placeholder="time per player"/>
-    <button class="button__login" @click="createTournament(tName, tMaxRounds, tTimePerPlayer)">Create</button>
+    <input v-model="name" placeholder="name"/>
+    <input v-model="maxRounds" placeholder="max rounds"/>
+    <input v-model="timePerPlayer" placeholder="time per player"/>
+    <button class="button__login" @click="createTournament(name, maxRounds, timePerPlayer)">Create</button>
 </template>
   
 <script>  
-
-import axios from "axios";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 } from 'uuid';
+import { createTournament } from '@/services/TournamentService';
   
 export default {
     name: "TournamentList",
+    data() {
+      return {
+        hostId: v4(),
+        name: '',
+        status: 'PLANNED',
+        startTime: '2025-06-11T16:00:00.000Z',
+        maxRounds: '',
+        timePerPlayer: ''
+      }
+    },
     methods: {
-        createTournament(name, maxRounds, timePerPlayer) {
-            axios.post(`http://localhost:8080/tournament`, {
-                hostId: uuidv4(),
+        async createTournament(name, maxRounds, timePerPlayer) {
+            const tournament = {
+                hostId: this.hostId,
                 name: name,
-                status: 'PLANNED',
-                startTime: '2025-06-11T16:00:00.000Z',
+                status: this.status,
+                startTime: this.startTime,
                 maxRounds: maxRounds,
                 timePerPlayer: timePerPlayer
-            })
+            }
+
+            await createTournament(tournament)
             .then(function (response) {
                 window.location.reload()
             })
-            .catch(function (error) {
-                console.log(error);
-            });
         }
     }
 };

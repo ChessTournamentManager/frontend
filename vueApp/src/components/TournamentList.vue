@@ -1,16 +1,16 @@
 <template>
-    <di>
+    <div>
         <h1>Tournaments</h1>
         <ul>
             <li v-for="tournament of tournaments" :key="tournament.id">
                 {{ tournament.name }}
             </li>
         </ul>
-    </di>
+    </div>
 </template>
   
 <script>
-import axios from "axios";
+import { fetchTournaments } from "@/services/TournamentService.js"
 
 export default {
     name: "TournamentList",
@@ -19,14 +19,13 @@ export default {
         tournaments: []
       };
     },
-    async created() {
-      this.getTournaments();
+    async mounted() {
+      await this.getTournaments();
     },
     methods: {
       async getTournaments() {
         try {
-          const res = await axios.get(`http://localhost:8080/tournament`);  
-          this.tournaments = res.data;
+          this.tournaments = await fetchTournaments();
         } catch (e) {
           console.error(e);
         }

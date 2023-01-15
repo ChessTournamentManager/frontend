@@ -9,7 +9,9 @@ export default defineConfig({
   },
   test: {
     globals: true,
+    environment: "jsdom",
   },
+  root: ".", //Define the root,
   plugins: [vue()],
   resolve: {
     alias: {
