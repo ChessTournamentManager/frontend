@@ -18,9 +18,6 @@ describe('Tournament List', () => {
             }
         })
 
-        console.log(wrapper.html())
-        console.log(wrapper.vm.$data)
-
         const ul = wrapper.find('ul')
 
         expect(ul.text()).toContain(mockTournamentList[0].name)
