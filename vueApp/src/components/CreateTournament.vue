@@ -7,14 +7,14 @@
 </template>
   
 <script>  
-import { v4 } from 'uuid';
+import {  v4 as uuidv4 } from 'uuid';
 import { createTournament } from '@/services/TournamentService';
   
 export default {
     name: "TournamentList",
     data() {
       return {
-        hostId: v4(),
+        hostId: uuidv4(),
         name: '',
         status: 'PLANNED',
         startTime: '2025-06-11T16:00:00.000Z',
