@@ -1,0 +1,12 @@
+{
+    "include": [
+        "./src/**/*",
+         "router.js"    
+    ],
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./src/*"],
+        }
+    }
+}

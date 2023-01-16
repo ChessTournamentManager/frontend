@@ -1,6 +1,18 @@
 import { createApp } from 'vue'
+import { createAuth0 } from '@auth0/auth0-vue'
 import App from './App.vue'
-
+import router from '@/Router/index.js'
 import './assets/main.css'
 
-createApp(App).mount('#app')
+const app = createApp(App);
+
+app
+  .use(router)
+  .use(
+    createAuth0({
+      domain: "chess-tournament-manager.eu.auth0.com",
+      client_id: "yJThGh7qZ9ZwBHTSkjhxqS7pNU87wyvs",
+      redirect_uri: "http://localhost:3000/callback",
+    })
+  )
+  .mount('#app')
